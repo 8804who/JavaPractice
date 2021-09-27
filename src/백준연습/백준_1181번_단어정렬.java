@@ -16,7 +16,6 @@ public class 백준_1181번_단어정렬 {
         }
         Collections.sort(word);
         word.sort(new Comparator<String>() {
-            @Override
             public int compare(String o1, String o2) {
                 if (o1.length()==o2.length()){
                     return o1.compareTo(o2);
