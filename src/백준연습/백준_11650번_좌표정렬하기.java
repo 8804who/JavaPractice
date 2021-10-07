@@ -27,7 +27,10 @@ public class 백준_11650번_좌표정렬하기 {
                 }
             }
         });
-        for(int i=0;i<N-1;i++) System.out.printf("%d %d\n", coordinate[i][0], coordinate[i][1]);
-        System.out.printf("%d %d", coordinate[N-1][0], coordinate[N-1][1]);
+        StringBuilder sb=new StringBuilder();
+        for(int i=0;i<N;i++){
+            sb.append(coordinate[i][0]+" "+coordinate[i][1]).append('\n');
+        }
+        System.out.print(sb);
     }
 }
