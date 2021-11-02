@@ -11,18 +11,13 @@ public class 백준_11659번_구간합구하기4 {
         String[] input = br.readLine().split(" ");
         int N=Integer.parseInt(input[0]);
         int M=Integer.parseInt(input[1]);
-        int[] arr=new int[N+1];
         int[] cumulativeSum=new int[N+1];
-        int sum;
         input=br.readLine().split(" ");
-        for(int i=0;i<N;i++) {
-            arr[i+1]=Integer.parseInt(input[i]);
-            cumulativeSum[i+1]=Integer.parseInt(input[i])+cumulativeSum[i];
-        }
+        for(int i=0;i<N;i++) cumulativeSum[i+1]=Integer.parseInt(input[i])+cumulativeSum[i];
+
         for(int i=0;i<M;i++){
-            input=br.readLine().split(" ");
-            sum=cumulativeSum[Integer.parseInt(input[1])]-cumulativeSum[Integer.parseInt(input[0])-1];
-            sb.append(sum+"\n");
+            input=br.readLine().split(" ");;
+            sb.append(cumulativeSum[Integer.parseInt(input[1])]-cumulativeSum[Integer.parseInt(input[0])-1]+"\n");
         }
         System.out.print(sb);
     }
