@@ -22,10 +22,11 @@ public class 백준_1012번_유기농배추 {
         if(field[h][v]==true){
             if(count==1) worm++;
             for(int i=0;i<4;i++){
-                if(h+move[i][0]>=0&&v+move[i][1]>=0&&h+move[i][0]< field.length&&v+move[i][1]<field[0].length)
+                if(h+move[i][0]>=0&&v+move[i][1]>=0&&h+move[i][0]< field.length&&v+move[i][1]<field[0].length){
                     if(field[h+move[i][0]][v+move[i][1]]==true&&visited[h+move[i][0]][v+move[i][1]]==false){
                         Search(h+move[i][0],v+move[i][1], count+1);
                     }
+                }
             }
         }
     }
