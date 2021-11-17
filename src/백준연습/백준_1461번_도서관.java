@@ -31,14 +31,11 @@ public class 백준_1461번_도서관 {
         for(int i=0;i<N;i++){
             num[i]=Integer.parseInt(st.nextToken());
         }
-
         Arrays.sort(num);
-
         for(int i=N-M-1;i>=0;i--){
             if(num[i]<0) break;
             positive.add(num[i]);
         }
-
         for(int i=M;i<N;i++){
             if(num[i]>0) break;
             negative.add(-num[i]);
