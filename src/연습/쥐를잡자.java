@@ -11,7 +11,7 @@ public class 쥐를잡자 extends JFrame{
         setTitle("Mouse 이벤트 예제");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         c.setLayout(null);
-        for(int i=0;i<10;i++) addMouse();
+        for(int i=1;i<10;i++) addMouse();
         setSize(500, 500);
         setVisible(true);
     }
