@@ -6,16 +6,10 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class 백준_1092번_배 {
-    static void returnBox(Stack<Integer> temp, Stack<Integer> unloadedBox){
-        while(!temp.isEmpty()){
-            unloadedBox.add(temp.pop());
-        }
-    }
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int count = 0;
-        int N=Integer.parseInt(br.readLine());
 
+        int N=Integer.parseInt(br.readLine());
         int[] crain=new int[N];
         StringTokenizer st = new StringTokenizer(br.readLine());
 
@@ -24,33 +18,29 @@ public class 백준_1092번_배 {
 
         int M=Integer.parseInt(br.readLine());
         int[] box = new int[M];
-        Stack<Integer> unloadedBox = new Stack<>();
-        Stack<Integer> temp = new Stack<>();
+
 
         st = new StringTokenizer(br.readLine());
 
         for(int i=0;i<M;i++) box[i]=Integer.parseInt(st.nextToken());
         Arrays.sort(box);
 
-        for(int i=0;i<M;i++) unloadedBox.add(box[i]);
+        int count = 0, remains = M;
 
         if(crain[N-1]<box[M-1]) System.out.print(-1);
         else{
-            while(!unloadedBox.isEmpty()){
-                for(int i=N-1;i>=0;i--){
-                    while(unloadedBox.size()>0){
-                        int selectedBox = unloadedBox.pop();
-                        if(selectedBox<=crain[i]){
-                            returnBox(temp, unloadedBox);
-                            break;
+            while(remains>0){
+                for(int i=N-1;i>=0;) {
+                    for(int j=M-1;j>=0;j--){
+                        if(i==-1) break;
+                        if(crain[i]>=box[j] & box[j]!=0) {
+                            box[j]=0;
+                            remains--;
+                            i--;
+                            if(j==M-1) M--;
+
                         }
-                        else{
-                            temp.add(selectedBox);
-                            if(unloadedBox.isEmpty()){
-                                returnBox(temp, unloadedBox);
-                                break;
-                            }
-                        }
+                        if(j==0) i=-1;
                     }
                 }
                 count++;
