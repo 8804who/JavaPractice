@@ -11,7 +11,6 @@ public class 백준_2178번_미로탐색 {
         int[][] move = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
         int[][] map=new int[N][M];
         boolean[][] visited = new boolean[N][M];
-        int min=10000;
 
         for(int i=0;i<N;i++){
             input = br.readLine().split("");
@@ -31,7 +30,7 @@ public class 백준_2178번_미로탐색 {
             int count = queueCount.poll();
 
             if(x==N-1 & y==M-1){
-                min=Math.min(min, count);
+                System.out.print(count+1);
             }
 
             for(int i=0;i<4;i++){
@@ -45,6 +44,5 @@ public class 백준_2178번_미로탐색 {
                 }
             }
         }
-        System.out.print(min+1);
     }
 }
