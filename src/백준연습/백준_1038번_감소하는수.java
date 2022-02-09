@@ -25,9 +25,8 @@ public class 백준_1038번_감소하는수 {
             }
             long finalNum=num%10;
             for(int j=0;j<10;j++){
-                if(finalNum>j) {
-                    q.add(Long.parseLong(num +Integer.toString(j)));
-                }
+                if(finalNum>j) q.add(Long.parseLong(num +Integer.toString(j)));
+                else break;
             }
         }
         if(count<N) System.out.print(-1);
