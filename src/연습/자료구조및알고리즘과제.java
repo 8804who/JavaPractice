@@ -14,12 +14,12 @@ public class 자료구조및알고리즘과제 {
         BigInteger div = new BigInteger("2");
         while(true){
             if(num.mod(div).equals(new BigInteger("0"))) {
-                System.out.println(div+"로 나눌경우 나머지 0이므로 소수가 아님");
+                System.out.print(div+"로 나눌경우 나머지 0이므로 소수가 아님");
                 break;
             }
             else div=div.add(new BigInteger("1"));
             if(div.equals(sq.add(new BigInteger("1")))) {
-                System.out.println("이 수는 소수입니다.");
+                System.out.print("이 수는 소수입니다.");
                 break;
             }
         }
