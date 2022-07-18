@@ -20,6 +20,8 @@ public class 백준_1713번_후보추천하기 {
         for (int i = 0; i < M; i++) {
             recommend=Integer.parseInt(st.nextToken());
             boolean isExist = false;
+            int min = 1001;
+            int deleteNum = 0;
             for (int j = 0; j < N; j++) {
                 if (candidate[j][0] == 0) {
                     candidate[j][0] = recommend;
@@ -30,20 +32,19 @@ public class 백준_1713번_후보추천하기 {
                     candidate[j][1]++;
                     isExist = true;
                     break;
+                }else{
+                    for (int k = 0; k < N; k++) {
+                        if (min > candidate[k][1]) {
+                            min = candidate[k][1];
+                            deleteNum = k;
+                        } else if (min == candidate[k][1]) {
+                            if (candidate[deleteNum][2] > candidate[k][2]) deleteNum = k;
+                        }
+                    }
                 }
             }
 
             if (!isExist) {
-                int min = 1001;
-                int deleteNum = 0;
-                for (int j = 0; j < N; j++) {
-                    if (min > candidate[j][1]) {
-                        min = candidate[j][1];
-                        deleteNum = j;
-                    } else if (min == candidate[j][1]) {
-                        if (candidate[deleteNum][2] > candidate[j][2]) deleteNum = j;
-                    }
-                }
                 candidate[deleteNum][0] = recommend;
                 candidate[deleteNum][1] = 0;
                 candidate[deleteNum][2] = i;
