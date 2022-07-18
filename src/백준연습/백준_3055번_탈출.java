@@ -1,4 +1,4 @@
-package 못푼문제;
+package 백준연습;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
