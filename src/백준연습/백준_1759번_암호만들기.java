@@ -28,7 +28,6 @@ public class 백준_1759번_암호만들기 {
         }
         Arrays.sort(alphabet);
 
-
         dfs(0,0, new char[L]);
         while(!stack.empty()) sb.append(stack.pop()).append("\n");
         System.out.print(sb);
