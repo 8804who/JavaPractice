@@ -46,7 +46,7 @@ public class 백준_3055번_탈출 {
                     for (int i = 0; i < 4; i++) {
                         int floodX = waterCoordinate[0] + move[i][0];
                         int floodY = waterCoordinate[1] + move[i][1];
-                        if (R >= floodX & floodX > 0 & C >= floodY & floodY > 0) {
+                        if (R >= floodX && floodX > 0 && C >= floodY && floodY > 0) {
                             if (map[floodX][floodY] == '.') {
                                 map[floodX][floodY] = '*';
                                 flood.add(new int[]{floodX, floodY});
@@ -60,8 +60,8 @@ public class 백준_3055번_탈출 {
                 int moveX = hedgehogCoordinate[0]+move[i][0];
                 int moveY = hedgehogCoordinate[1]+move[i][1];
 
-                if(R>=moveX & moveX>0 & C>=moveY & moveY>0){
-                    if(map[moveX][moveY]=='.' & !visit[moveX][moveY]){
+                if(R>=moveX && moveX>0 && C>=moveY && moveY>0){
+                    if(map[moveX][moveY]=='.' && !visit[moveX][moveY]){
                         hedgehog.add(new int[]{moveX, moveY, hedgehogCoordinate[2]+1});
                         visit[moveX][moveY] = true;
                     }else if(map[moveX][moveY]=='D'){
