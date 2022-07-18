@@ -9,9 +9,10 @@ import java.util.StringTokenizer;
 
 public class 백준_1759번_암호만들기 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    static StringBuilder sb = new StringBuilder();
     static StringTokenizer st;
 
-    static Stack<StringBuilder> stack = new Stack<>();
+    static Stack<char[]> stack = new Stack<>();
 
     static int L, C;
     static char[] alphabet;
@@ -27,22 +28,27 @@ public class 백준_1759번_암호만들기 {
         }
         Arrays.sort(alphabet);
 
-        dfs(0,0, new StringBuilder(""));
-        while(!stack.empty()) System.out.println(stack.pop());
+
+        dfs(0,0, new char[L]);
+        while(!stack.empty()) sb.append(stack.pop()).append("\n");
+        System.out.print(sb);
     }
-    static void dfs(int index, int depth, StringBuilder s){
+    static void dfs(int index, int depth, char[] s){
         if(depth==L){
             int vowel=0;
             int consonant =0;
-            for (int i = 0; i < s.length(); i++) {
-                if(s.charAt(i)=='a' | s.charAt(i)=='e' | s.charAt(i)=='i' | s.charAt(i)=='o' | s.charAt(i)=='u') vowel++;
+            for (char c : s) {
+                if (c == 'a' | c == 'e' | c == 'i' | c == 'o' | c == 'u') vowel++;
                 else consonant++;
             }
             if(vowel>=1 & consonant>=2) stack.push(s);
             return;
         }
         if(index>=C) return;
-        dfs(index+1, depth, new StringBuilder(s));
-        dfs(index+1, depth+1, new StringBuilder(s.append(alphabet[index])));
+        char[] s2 = new char[L];
+        System.arraycopy(s, 0, s2, 0, L);
+        s2[depth]=alphabet[index];
+        dfs(index+1, depth, s);
+        dfs(index+1, depth+1, s2);
     }
 }
