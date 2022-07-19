@@ -23,7 +23,6 @@ public class 백준_2003번_수들의합2 {
         int sum = nums[0];
         int count = 0;
 
-
         while (true) {
             if (sum == M) count++;
             if (sum >= M) {
