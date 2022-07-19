@@ -35,38 +35,32 @@ public class 백준_2143번_두배열의합 {
 
         int ptA = 0;
         int ptB = 0;
-        try {
+
+        while(true) {
             long numA = subA.get(ptA);
             long numB = subB.get(ptB);
-            while(true) {
-                if (numA + numB == T) {
-                    long countA = 1;
-                    long countB = 1;
-                    while (ptA<subA.size() && subA.get(ptA+1) == numA) {
-                        countA++;
-                        ptA++;
-                    }
-                    while (ptB<subB.size() && subB.get(ptB+1) == numB) {
-                        countB++;
-                        ptB++;
-                    }
-                    count+=countA*countB;
-                    if (ptA<subA.size() && subA.get(ptA)==numA) {
-                        ptA++;
-                        numA = subA.get(ptA);
-                    }
-                } else if (numA + numB > T) {
-                    ptB++;
-                    numB = subB.get(ptB);
-                } else {
+            if (numA + numB == T) {
+                long countA = 0;
+                long countB = 0;
+                while (ptA<subA.size() && subA.get(ptA) == numA) {
+                    countA++;
                     ptA++;
-                    numA = subA.get(ptA);
                 }
+                while (ptB<subB.size() && subB.get(ptB) == numB) {
+                    countB++;
+                    ptB++;
+                }
+                count+=countA*countB;
+            } else if (numA + numB > T) {
+                ptB++;
+            } else {
+                ptA++;
+            }
+            if (ptA == subA.size() || ptB == subB.size()) {
+                break;
             }
         }
-        catch (Exception e){
-            System.out.print(count);
-        }
+        System.out.print(count);
     }
 
     static void inputArr(int l, int[] arr) throws IOException{
