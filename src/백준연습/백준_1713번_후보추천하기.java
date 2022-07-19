@@ -61,12 +61,7 @@ public class 백준_1713번_후보추천하기 {
             }
         }
 
-        Comparator<Frame> comp = new Comparator<Frame>() {
-            @Override
-            public int compare(Frame o1, Frame o2) {
-                return o1.studentNumber - o2.studentNumber;
-            }
-        };
+        Comparator<Frame> comp = Comparator.comparingInt(o -> o.studentNumber);
 
         Arrays.sort(frames, comp);
         for(int i=0;i<N;i++){
