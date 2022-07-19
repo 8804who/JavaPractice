@@ -23,20 +23,19 @@ public class 백준_2003번_수들의합2 {
         int sum = nums[0];
         int count = 0;
 
-        try {
-            while (h<N) {
-                if (sum == M) count++;
-                if (sum >= M) {
-                    sum -= nums[l];
-                    l++;
-                }
-                if (sum < M) {
-                    h++;
-                    sum += nums[h];
-                }
+
+        while (true) {
+            if (sum == M) count++;
+            if (sum >= M) {
+                sum -= nums[l];
+                l++;
             }
-        }catch (ArrayIndexOutOfBoundsException e){
-            System.out.print(count);
+            if (sum < M) {
+                if(h==N-1) break;
+                h++;
+                sum += nums[h];
+            }
         }
+        System.out.print(count);
     }
 }
