@@ -1,9 +1,29 @@
 package 백준연습;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
+
+class Frame implements Comparable<Frame>{
+    int studentNumber;
+    int recommendCount;
+    int turn;
+    Frame(int recommend, int i){
+        studentNumber = recommend;
+        recommendCount = 0;
+        turn = i;
+    }
+
+    @Override
+    public int compareTo(Frame o) {
+        int comp = Integer.compare(recommendCount, o.recommendCount);
+        if(comp==0) return Integer.compare(turn, o.turn);
+        else return comp;
+    }
+}
 
 public class 백준_1713번_후보추천하기 {
     static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -12,48 +32,45 @@ public class 백준_1713번_후보추천하기 {
     public static void main(String[] args) throws IOException{
         int N = Integer.parseInt(br.readLine());
         int M = Integer.parseInt(br.readLine());
-        int[][] candidate = new int[N][3];
         int recommend;
 
         st = new StringTokenizer(br.readLine());
+        Frame[] frames = new Frame[N];
+        for(int i=0;i<N;i++) frames[i]=new Frame(0,0);
 
         for (int i = 0; i < M; i++) {
             recommend=Integer.parseInt(st.nextToken());
             boolean isExist = false;
-            int min = 1001;
-            int deleteNum = 0;
             for (int j = 0; j < N; j++) {
-                if (candidate[j][0] == 0) {
-                    candidate[j][0] = recommend;
-                    candidate[j][2] = i;
+                if (frames[j].studentNumber == 0) {
+                    frames[j].studentNumber = recommend;
+                    frames[j].turn = i;
                     isExist = true;
                     break;
-                } else if (candidate[j][0] == recommend) {
-                    candidate[j][1]++;
+                } else if (frames[j].studentNumber == recommend) {
+                    frames[j].recommendCount++;
                     isExist = true;
                     break;
-                }else{
-                    for (int k = 0; k < N; k++) {
-                        if (min > candidate[k][1]) {
-                            min = candidate[k][1];
-                            deleteNum = k;
-                        } else if (min == candidate[k][1]) {
-                            if (candidate[deleteNum][2] > candidate[k][2]) deleteNum = k;
-                        }
-                    }
                 }
             }
-
-            if (!isExist) {
-                candidate[deleteNum][0] = recommend;
-                candidate[deleteNum][1] = 0;
-                candidate[deleteNum][2] = i;
+            if(!isExist){
+                Arrays.sort(frames);
+                frames[0].studentNumber=recommend;
+                frames[0].recommendCount=0;
+                frames[0].turn=i;
             }
         }
 
-        Arrays.sort(candidate, (o1, o2) -> {return o1[0]-o2[0];});
+        Comparator<Frame> comp = new Comparator<Frame>() {
+            @Override
+            public int compare(Frame o1, Frame o2) {
+                return o1.studentNumber - o2.studentNumber;
+            }
+        };
+
+        Arrays.sort(frames, comp);
         for(int i=0;i<N;i++){
-            if(candidate[i][0]!=0) System.out.print(candidate[i][0]+" ");
+            if(frames[i].studentNumber!=0) System.out.print(frames[i].studentNumber+" ");
         }
     }
 }
