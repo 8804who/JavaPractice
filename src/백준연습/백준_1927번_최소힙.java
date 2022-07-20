@@ -9,8 +9,8 @@ public class 백준_1927번_최소힙 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
-        List<Long> l  = new ArrayList<>();
-        l.add(0L);
+        List<Integer> l  = new ArrayList<>();
+        l.add(0);
         int N = Integer.parseInt(br.readLine());
         for(int i=0;i<N;i++){
             int in = Integer.parseInt(br.readLine());
@@ -20,7 +20,7 @@ public class 백준_1927번_최소힙 {
         System.out.print(sb);
     }
 
-    static void input(List<Long> l, long n){
+    static void input(List<Integer> l, int n){
         l.add(n);
         int locate = l.size()-1;
         while(locate/2>0 && l.get(locate/2)>n) {
@@ -29,7 +29,7 @@ public class 백준_1927번_최소힙 {
         }
     }
 
-    static long pop(List<Long> l){
+    static long pop(List<Integer> l){
         if(l.size()==1) return 0;
         else{
             long n =  l.get(1);
@@ -37,7 +37,7 @@ public class 백준_1927번_최소힙 {
             l.remove(l.size()-1);
             if(l.size()==1) return n;
 
-            long num = l.get(1);
+            int num = l.get(1);
             int locate = 1;
 
             while(true){
@@ -64,7 +64,7 @@ public class 백준_1927번_최소힙 {
         }
     }
 
-    static void swap(List<Long> l, int locate1, int locate2, long num){
+    static void swap(List<Integer> l, int locate1, int locate2, int num){
         l.set(locate1, l.get(locate2));
         l.set(locate2, num);
     }
