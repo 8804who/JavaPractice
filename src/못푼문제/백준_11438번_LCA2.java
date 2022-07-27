@@ -11,21 +11,17 @@ public class 백준_11438번_LCA2 {
         StringTokenizer st;
 
         int N = Integer.parseInt(br.readLine());
-        int[][] node = new int[N+1][4];
+        int MAX = 1;
+        while(1<<MAX < N) MAX++;
+
+
+        int[][] node = new int[N+1][MAX];
 
         for(int i=0;i<N-1;i++){
             st = new StringTokenizer(br.readLine());
             int a = Integer.parseInt(st.nextToken());
             int b = Integer.parseInt(st.nextToken());
-            if(a>b){
-                int temp = a;
-                a=b;
-                b=temp;
-            }
-            node[b][0]=a;
-            node[b][1]=node[a][0];
-            node[b][2]=node[node[a][1]][0];
-            node[b][3]=node[a][3]+1;
+            node[a][0]=b;
         }
         
         int M = Integer.parseInt(br.readLine());
