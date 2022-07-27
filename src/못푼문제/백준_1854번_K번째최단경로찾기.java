@@ -21,7 +21,7 @@ public class 백준_1854번_K번째최단경로찾기 {
                 public int compare(long[] o1, long[] o2) {
                     return Long.compare(o1[1], o2[1]);
                 }
-            });
+        });
 
         List<long[]>[] values = new ArrayList[V+1];
         for(int i=1;i<V+1;i++) values[i] = new ArrayList<>();
@@ -31,17 +31,20 @@ public class 백준_1854번_K번째최단경로찾기 {
         for(int i=0;i<E;i++){
             st = new StringTokenizer(br.readLine());
             int n1 = Integer.parseInt(st.nextToken());
-            if(n1==1) pq.add(new long[]{Long.parseLong(st.nextToken()), Long.parseLong(st.nextToken())});
-            else values[n1].add(new long[]{Long.parseLong(st.nextToken()), Long.parseLong(st.nextToken())});
+            long n2 = Long.parseLong(st.nextToken());
+            long n3 = Long.parseLong(st.nextToken());
+            if(n1==1) pq.add(new long[]{n2, n3});
+            values[n1].add(new long[]{n2, n3});
         }
+
+        linkedValue[1][1]++;
 
         while(!pq.isEmpty()){
             long[] link=pq.poll();
             if(linkedValue[(int) link[0]][1]==K) continue;
-            linkedValue[(int) link[0]][1]++;
             linkedValue[(int) link[0]][0]=link[1];
-            for(int i = 0; i<values[(int) link[0]].size(); i++){
-                long[] link2 = values[(int) link[0]].get(i);
+            linkedValue[(int) link[0]][1]++;
+            for(long[] link2 : values[(int) link[0]]){
                 if(linkedValue[(int) link2[0]][1]<K) pq.add(new long[]{link2[0], linkedValue[(int) link[0]][0]+link2[1]});
             }
         }
