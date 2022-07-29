@@ -14,7 +14,6 @@ public class 백준_7579번_앱 {
 
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
-        int min = 10001;
         int[] memory = new int[N];
         int[] restart = new int[N];
 
@@ -32,22 +31,21 @@ public class 백준_7579번_앱 {
 
 
         for(int i=0;i<N;i++){
-           for(int j=0;j<=N*100;j++){
-               if(i==0) {
-                   if(j-restart[i]>=0) dp[i][j]=memory[i];
-               }
-               else{
-                   if(j-restart[i]>=0) dp[i][j]=Math.max(dp[i-1][j],dp[i-1][j-restart[i]]+memory[i]);
-                   else dp[i][j]=dp[i-1][j];
-               }
-           }
-
-           for(int j=0;j<=N*100;j++){
-               if(dp[i][j]>=M) {
-                   min = Math.min(min, j);
-               }
+            for(int j=0;j<=N*100;j++){
+                if(i==0) {
+                    if(j-restart[i]>=0) dp[i][j]=memory[i];
+                }
+                else{
+                    if(j-restart[i]>=0) dp[i][j]=Math.max(dp[i-1][j],dp[i-1][j-restart[i]]+memory[i]);
+                    else dp[i][j]=dp[i-1][j];
+                }
             }
         }
-        System.out.print(min);
+        for(int j=0;j<=N*100;j++){
+            if(dp[N-1][j]>=M) {
+                System.out.print(j);
+                break;
+            }
+        }
     }
 }
